@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Section Component snapshot with fragments props 1`] = `
+<DocumentFragment>
+  <div
+    class="flex w-full justify-between"
+  >
+    <button
+      class="px-2 bg-gray-300"
+      data-testid="previousButton"
+    >
+       &lt; 
+    </button>
+    <div
+      class="flex-grow"
+      data-testid="fragmentView"
+    >
+      <div
+        class="px-4 py-2 bg-blue-50"
+      >
+        <div
+          data-testid="text"
+        >
+          himanshu
+        </div>
+        <div
+          data-testid="like"
+        >
+           10 
+        </div>
+      </div>
+    </div>
+    <button
+      class="px-2 bg-gray-300"
+      data-testid="nextButton"
+    >
+       &gt; 
+    </button>
+  </div>
+</DocumentFragment>
+`;
