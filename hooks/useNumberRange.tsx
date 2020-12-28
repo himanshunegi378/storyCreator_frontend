@@ -5,12 +5,9 @@ function useNumberRange(
   max: number,
   current: number | undefined = undefined
 ): [number, (number: number) => boolean] {
+  if (min > max) throw new Error('min argument is greater than max argument')
+  
   const [currentValue, setCurrentValue] = useState<number>(current || min)
-
-  useEffect(() => {
-    if (min > max) throw new Error('min argument is greater than max argument')
-    return () => {}
-  }, [min, max])
 
   useEffect(() => {
     if (currentValue < min) setCurrentValue(min)

@@ -19,7 +19,18 @@ describe('useNumberRangeHook', () => {
     expect(result.current[0]).toEqual(5)
   })
 
-  it.todo('throw when min value constraint value is > max value constraint')
+  it('throw when min value constraint value is > max value constraint', () => {
+    let min = 11
+    let max = 10
+    const { result,rerender } = renderHook(() => useNumberRange(min, max))
+    expect(result.error).toEqual(
+      Error('min argument is greater than max argument')
+    )
+    min = 10
+    rerender()
+    expect(result.error).toBeUndefined()
+
+  })
 
   it('when min is updated to greater than current value than assign min value to current value', () => {
     let min = 0
