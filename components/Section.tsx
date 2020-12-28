@@ -10,7 +10,7 @@ function Section(props: SectionProps) {
   const [fragmentInViewIndex, setFragmentInViewIndex] = useNumberRange(
     0,
     props.fragments.length
-  )
+   )
 
   useEffect(() => {
     const fragmentsCount = props.fragments.length
