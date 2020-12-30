@@ -17,8 +17,7 @@ function Section(props: SectionProps) {
     if (fragmentInViewIndex > fragmentsCount - 1) {
       setFragmentInViewIndex(fragmentsCount - 1)
     }
-    return () => {}
-  }, [props.fragments])
+  }, [fragmentInViewIndex, props.fragments, setFragmentInViewIndex])
 
   function moveLeft() {
     setFragmentInViewIndex(
