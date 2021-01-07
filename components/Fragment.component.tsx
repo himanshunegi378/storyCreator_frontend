@@ -1,13 +1,13 @@
-import React from 'react'
+import React, { ReactElement } from 'react'
 
 export interface IFragment {
   like: number
   text: string
 }
 
-export interface FragmentProps extends IFragment {}
+export type FragmentProps = IFragment
 
-function Fragment(props: FragmentProps) {
+function Fragment(props: FragmentProps): ReactElement {
   const { like, text } = props
   return (
     <div className="px-4 py-2 bg-blue-50">

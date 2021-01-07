@@ -1,15 +1,16 @@
-import React, { RefObject, useRef, useState, useEffect } from 'react'
+import React, { useEffect, ReactElement } from 'react'
 import useNumberRange from '../hooks/useNumberRange'
-import Fragment, { IFragment } from './Fragment'
+import Fragment, { IFragment } from './Fragment.component'
 
 export interface SectionProps {
   fragments: IFragment[]
 }
 
-function Section(props: SectionProps) {
+function Section(props: SectionProps): ReactElement {
+  const { fragments } = props
   const [fragmentInViewIndex, setFragmentInViewIndex] = useNumberRange(
     0,
-    props.fragments.length
+    fragments.length
   )
 
   useEffect(() => {
@@ -21,17 +22,12 @@ function Section(props: SectionProps) {
 
   function moveLeft() {
     setFragmentInViewIndex(
-      fragmentInViewIndex - 1 >= 0 ? fragmentInViewIndex - 1 : 0
+      (fragmentInViewIndex - 1 + fragments.length) % fragments.length
     )
   }
 
   function moveRight() {
-    const fragmentsCount = props.fragments.length
-    setFragmentInViewIndex(
-      fragmentInViewIndex + 1 <= fragmentsCount - 1
-        ? fragmentInViewIndex + 1
-        : fragmentsCount - 1
-    )
+    setFragmentInViewIndex((fragmentInViewIndex + 1) % fragments.length)
   }
 
   return (

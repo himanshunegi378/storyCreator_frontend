@@ -1,6 +1,6 @@
 import React from 'react'
 import { cleanup, render } from '@testing-library/react'
-import Fragment, { IFragment } from '../../components/Fragment'
+import Fragment, { IFragment } from '../../components/Fragment.component'
 
 afterEach(cleanup)
 

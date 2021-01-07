@@ -1,7 +1,7 @@
-import React from 'react'
-import Section from '../components/Section'
+import React, { ReactElement } from 'react'
+import Section from '../components/Section.component'
 
-export default function Home() {
+export default function Home(): ReactElement {
   return (
     <div>
       <Section

@@ -1,6 +1,6 @@
 import React from 'react'
 import { cleanup, render } from '@testing-library/react'
-import Section, { SectionProps } from '../../components/Section'
+import Section, { SectionProps } from '../../components/Section.component'
 import userEvent from '@testing-library/user-event'
 
 afterEach(cleanup)
