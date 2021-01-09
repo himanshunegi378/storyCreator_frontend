@@ -1,24 +1,44 @@
-import React, { useEffect, ReactElement } from 'react'
+import useAxios from 'axios-hooks'
+import React, { useEffect, ReactElement, useState } from 'react'
 import useNumberRange from '../hooks/useNumberRange'
 import Fragment, { IFragment } from './Fragment.component'
 
 export interface SectionProps {
-  fragments: IFragment[]
+  sectionId: string
 }
 
 function Section(props: SectionProps): ReactElement {
-  const { fragments } = props
+  const { sectionId } = props
+  const [fragments, setFragments] = useState([])
   const [fragmentInViewIndex, setFragmentInViewIndex] = useNumberRange(
     0,
     fragments.length
   )
 
+  const [{ data, loading, error }, refetch] = useAxios(
+    {
+      method: 'GET',
+      baseURL: process.env.NEXT_PUBLIC_BACKEND_URL,
+      url: '/fragment',
+      params: {
+        sectionId: sectionId
+      }
+    },
+    { manual: false }
+  )
+
   useEffect(() => {
-    const fragmentsCount = props.fragments.length
+    if (!data) return
+    setFragments(data)
+    console.log(data)
+  }, [data])
+
+  useEffect(() => {
+    const fragmentsCount = fragments.length
     if (fragmentInViewIndex > fragmentsCount - 1) {
       setFragmentInViewIndex(fragmentsCount - 1)
     }
-  }, [fragmentInViewIndex, props.fragments, setFragmentInViewIndex])
+  }, [fragmentInViewIndex, fragments, setFragmentInViewIndex])
 
   function moveLeft() {
     setFragmentInViewIndex(
@@ -41,10 +61,10 @@ function Section(props: SectionProps): ReactElement {
         {'<'}{' '}
       </button>
       <div data-testid="fragmentView" className="flex-grow">
-        {props.fragments[fragmentInViewIndex] ? (
+        {fragments[fragmentInViewIndex] ? (
           <Fragment
-            text={props.fragments[fragmentInViewIndex].text}
-            like={props.fragments[fragmentInViewIndex].like}
+            text={fragments[fragmentInViewIndex].text}
+            like={fragments[fragmentInViewIndex].like}
           />
         ) : (
           'Add Fragment'
