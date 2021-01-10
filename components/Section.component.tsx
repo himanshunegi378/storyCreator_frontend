@@ -42,7 +42,7 @@ function Section(props: SectionProps): ReactElement {
         sectionId: sectionId
       }
     },
-    { manual: false, useCache: false }
+    { useCache: false }
   )
 
   function handleAddFragment() {
