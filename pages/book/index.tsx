@@ -29,7 +29,7 @@ function Book(): ReactElement {
         bookId: id
       }
     },
-    { manual: false }
+    { manual: false, useCache: false }
   )
 
   async function handleAddSection() {

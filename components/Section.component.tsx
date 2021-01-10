@@ -24,7 +24,9 @@ const customStyles = {
 
 function Section(props: SectionProps): ReactElement {
   const { sectionId } = props
-  const [fragments, setFragments] = useState([])
+  const [fragments, setFragments] = useState<
+    { id: any; like: any; text: any }[]
+  >([])
   const [modalIsOpen, setIsOpen] = useState(false)
   const [fragmentInViewIndex, setFragmentInViewIndex] = useNumberRange(
     0,
@@ -40,7 +42,7 @@ function Section(props: SectionProps): ReactElement {
         sectionId: sectionId
       }
     },
-    { manual: false }
+    { manual: false, useCache: false }
   )
 
   function handleAddFragment() {
@@ -65,9 +67,7 @@ function Section(props: SectionProps): ReactElement {
     const addedData = await addFragment(event.currentTarget['fragment']?.value)
     if (!addedData?.text) return
     const { id, like, text } = addedData
-    setFragments(prevFragments => {
-      return [...prevFragments, { id, like, text }]
-    })
+    setFragments(prevFragments => [...prevFragments, { id, like, text }])
     setIsOpen(false)
   }
 
